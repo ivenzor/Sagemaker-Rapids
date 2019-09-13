@@ -6,7 +6,9 @@ This short document is intented as a quick guide for those interested in using R
 2) Once the instance is started use the terminal to execute the following:
     
     *source /home/ec2-user/anaconda3/etc/profile.d/conda.sh*
+    
     *conda create --name rapids python=3.6*
+    
     *conda activate rapids*
     
 
@@ -23,6 +25,7 @@ This short document is intented as a quick guide for those interested in using R
  4) Install sagemaker and register the environment:
       
       *pip install sagemaker*
+      
       *ipython kernel install --user --name=rapids*
       
       
@@ -31,31 +34,50 @@ This short document is intented as a quick guide for those interested in using R
  6) In jupyter, we do a basic test:
       
       *import cudf*
+      
       *import cuml*
+      
       *import dask*
+      
       *import pandas as pd*
+      
       *import dask_cudf*
       
+      
       *df = cudf.DataFrame()*
+      
       *df['key'] = [0, 1, 2, 3, 4]*
+      
       *df['val'] = [float(i + 10) for i in range(5)]*
+      
       *print(df)*
       
+      
       *df_float = cudf.DataFrame()*
+      
       *df_float['0'] = [1.0, 2.0, 5.0]*
+      
       *df_float['1'] = [4.0, 2.0, 1.0]*
+      
       *df_float['2'] = [4.0, 2.0, 1.0]*
+      
       *dbscan_float = cuml.DBSCAN(eps=1.0, min_samples=1)*
+      
       *dbscan_float.fit(df_float)*
+      
       *print(dbscan_float.labels_)*
       
       
   7) If you are using Sagemaker it's very probably your data is on s3. To read data: 
       
       *import boto3*
+      
       *import sagemaker*
+      
       *from sagemaker import get_execution_role*
+      
       *role = get_execution_role()*
+      
       
       *df=dask_cudf.read_parquet('s3://XXX-YYY-ZZZ.snappy.parquet', compression='snapy')*
       *len(df)*
