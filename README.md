@@ -86,6 +86,7 @@ This short document is intented as a quick install guide for those interested in
       
       
       *df=dask_cudf.read_parquet('s3://XXX-YYY-ZZZ.snappy.parquet', compression='snapy')*
+     
       *len(df)*
       
 
