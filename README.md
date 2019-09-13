@@ -1,8 +1,9 @@
 # Sagemaker-Rapids
 
-This short document is intented as a quick guide for those interested in using Rapids within Sagemaker.
+This short document is intented as a quick install guide for those interested in using Rapids within Sagemaker.
 
 1) Be sure you are using a p3 instance (v100 GPU). p2 instances are no good because K80 cards are not supported to be used with Rapids.
+
 2) Once the instance is started use the terminal to execute the following:
     
     *source /home/ec2-user/anaconda3/etc/profile.d/conda.sh*
@@ -14,6 +15,7 @@ This short document is intented as a quick guide for those interested in using R
 
     I strongly recommend to create a new environment because if you try to install Rapids in the default python3 environment it will take a lot of time to solve the environment and also it won't be able to find everything it need to be compatible.
 
+
 3) In the new environment conda install Rapids and some other packages that will be required to read s3 files:
     
     *conda install -c rapidsai -c nvidia -c numba -c conda-forge -c anaconda cudf=0.9 cuml=0.9 cugraph=0.9 dask-cudf=0.9 python=3.6 \
@@ -22,6 +24,7 @@ This short document is intented as a quick guide for those interested in using R
 
     It will take about 12 minutes to solve the environment.
     
+ 
  4) Install sagemaker and register the environment:
       
       *pip install sagemaker*
@@ -29,7 +32,9 @@ This short document is intented as a quick guide for those interested in using R
       *ipython kernel install --user --name=rapids*
       
       
+ 
  5) After a minute or so you may change the kernel in jupyter lab: kernel -> change kernel -> rapids
+ 
  
  6) In jupyter, we do a basic test:
       
@@ -68,7 +73,8 @@ This short document is intented as a quick guide for those interested in using R
       *print(dbscan_float.labels_)*
       
       
-  7) If you are using Sagemaker it's very probably your data is on s3. To read data: 
+
+7) If you are using Sagemaker it's very probably your data is on s3. To read data: 
       
       *import boto3*
       
@@ -83,4 +89,5 @@ This short document is intented as a quick guide for those interested in using R
       *len(df)*
       
 
+ 
  8) To be continued...
